@@ -1,4 +1,6 @@
 <div class="bg-primary">
     <h2>this is the server page</h2>
-<p>We have been working alot on this.</p>
+<p>We have been working alot on this. Thanks to {{ getName() }} from the department of {{getDepartment()}}</p>
 </div>
+<hr>
+<button class="btn btn-primary" [disabled] = "!allowServers" id="addBtn">Add server</button>
