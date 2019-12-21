@@ -3,4 +3,14 @@
 <p>We have been working alot on this. Thanks to {{ getName() }} from the department of {{getDepartment()}}</p>
 </div>
 <hr>
-<button class="btn btn-primary" [disabled] = "!allowServers" id="addBtn">Add server</button>
+<label>Enter the server name:</label>
+<!-- <input type="text" (input)="showText($event)"> -->
+<input type="text" [(ngModel)] = "serverNameInput">
+<br/>
+<!-- <p>{{serverNameInput}}</p> -->
+<p *ngIf = "serverCheck">Server is created, server name is: {{serverNameInput}}</p>
+<button class="btn btn-primary" [disabled] = "!allowServers" id="addBtn" (click) = 'getServerString()'>Add server</button>
+<hr>
+<p [ngStyle] = '{ backgroundColor: getServerColor()}' *ngIf = 'serverCheck else elseCase'>server is: Online</p>
+<ng-template #elseCase><p [ngStyle] = '{ backgroundColor: getServerColor()}'>Server is Offline.</p></ng-template>
+<app-server *ngFor = 'let server of servers'></app-server>

@@ -7,17 +7,15 @@ import * as $ from 'jquery';
 })
 
 export class ServerComponent implements OnInit{
-    ngOnInit(): void {
-        $(document).ready(function () {
-            $("#addBtn").click(function(){
-                alert("Add button is clicked.");
-            });
-        });
-    }
-    name: String = "Vikas";
-    department: String = "Computer Science";
-    allowServers: boolean = false;
     
+    name = "Vikas";
+    department= "Computer Science";
+    allowServers = false;
+    serverString = "Server is not created";
+    serverNameInput = "hello";
+    serverCheck = false;
+    servers = ['Test-server 1', 'Test-server 2'];
+
     constructor(){
         setTimeout(() => {
             this.allowServers = true;
@@ -30,4 +28,24 @@ export class ServerComponent implements OnInit{
     getDepartment(){
         return this.department;
         }
+    getServerString(){
+        this.servers.push(this.serverNameInput);
+        this.serverCheck = true;
+        return this.serverString = this.serverNameInput;
+    }
+    showText($event){
+        this.serverNameInput = (<HTMLInputElement>event.target).value;
+    }
+    getServerColor(){
+        return this.serverCheck === true ? 'green': 'red';
+    }
+    ngOnInit(): void {
+        $(document).ready(function () {
+            $('#addBtn').click(function(){
+                //$('#addBtn').after("<div class="+"bg-primary"+">  <h2>this is the server page</h2>  <p>We have been working alot on this. Thanks to "+{{ getName() }} +"from the department of {{getDepartment()}}</p> </div> <hr>");
+                //alert("Add button is clicked.");
+            });
+        });
+    }
+
 }
